@@ -30,4 +30,7 @@
         background-size: cover;
         background-position: 70% -35px;
     }
+    .main-content {
+        overflow-x: hidden;
+    }
 }

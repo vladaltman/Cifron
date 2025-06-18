@@ -34,7 +34,7 @@
     position: fixed;
     background-color: white;
     width: 100vw;
-    height: 252px;
+    height: 78.75vw;
     left: 0;
     top: 0;
     display: flex;
@@ -94,7 +94,9 @@
 .header-mobile .menu .menu-nav .section-2 {
     display: flex;
     flex-direction: column;
+    justify-content: end;
     width: 100%;
+    height: 22.7%;
 }
 .header-mobile .menu .menu-nav div div:first-child {
     display: flex;
@@ -102,21 +104,21 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 21px;
+    height: 70.2%;
 }
 .header-mobile .menu .menu-nav div div:first-child span:first-child {
-    width: 96px;
+    width: 60%;
+    height: 29%;
     font-size: 4.4vw;
     white-space: nowrap;
     text-transform: uppercase;
 }
 .header-mobile .menu .menu-nav div div:first-child span:last-child {
-    width: 16px;
-    height: 16px;
+    width: 9.88%;
+    height: 76.1%;
 }
 .header-mobile .menu .menu-nav div div:last-child {
     width: 100%;
     height: 1px;
     background-color: black;
-    margin-top: 4px;
 }
