@@ -1,0 +1,25 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.h1 {
+    width: 614px;
+    height: 114px;
+    margin-top: 55px;
+    font-size: 90px;
+}
+
+
+@media (max-width: 400px) {
+    .h1 {
+        width: 75vw;
+        height: 14vw;
+        margin-top: 9.375vw;
+        font-size: 11vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

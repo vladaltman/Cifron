@@ -1,0 +1,60 @@
+.header {
+    width: 1140px;
+    height: 45px;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header .container-left {
+    display: flex;
+    align-items: center;
+    gap: 52px;
+}
+.header .logo {
+    display: flex;
+    flex-direction: column;
+    font-size: 32px;
+    line-height: .95;
+}
+.header .loren-ipsum {
+    display: flex;
+    align-items: center;
+    font-family: 'Actay';
+    width: 449px;
+    height: 9px;
+    gap: 40px;
+    font-size: 20px;
+}
+.header .loren-ipsum div {
+    cursor: pointer;
+}
+.header .container-right {
+    width: 173px;
+    font-family: 'Actay';
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+.header .container-right div:first-child {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+.header .container-right div:first-child span:first-child {
+    text-transform: uppercase;
+    width: 137px;
+    height: 9px;
+    font-size: 20px;
+}
+.header .container-right svg {
+    position: relative;
+    top: 5px;
+    left: 2px;
+}
+.header .container-right div:last-child {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    margin-top: 4px;
+}

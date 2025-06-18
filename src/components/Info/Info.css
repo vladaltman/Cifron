@@ -1,0 +1,108 @@
+.info {
+    background-color: white;
+    color: black;
+    font-family: Arial;
+    width: 215px;
+    height: 50.29px;
+    border-radius: 166.9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24.45px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+.popup {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.614);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+.popup.visible {
+    opacity: 1;
+    visibility: visible;
+}
+.popup .popup-area {
+    position: relative;
+    background-color: white;
+    color: black;
+    width: 993px;
+    height: 471px;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1.2);
+    transition: transform .5s ease;
+}
+.popup .popup-area.visible {
+    transform: scale(1);
+}
+.popup .popup-area span:first-child {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 20px;
+    left: 908px;
+    cursor: pointer;
+}
+.popup .popup-area span:first-child img {
+    width: 26.41px;
+    height: 26.41px;
+}
+.popup .popup-area span:last-child {
+    font-family: Arial;
+    width: 871px;
+    height: 280px;
+    font-size: 20px;
+    line-height: 140%;
+}
+
+
+@media (max-width: 400px) {
+    .info {
+        width: 56.565vw;
+        height: 13.125vw;
+        margin-top: 16.8%;
+    }
+    .popup {
+        width: 100vw;
+        height: 100vh;
+    }
+    .popup .popup-area {
+        width: 90.62vw;
+        height: 471px;
+        border-radius: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .popup .popup-area span:first-child {
+        width: 12.813vw;
+        height: 12.813vw;
+        top: 0;
+        left: 70vw;
+        margin-top: 4.14%;
+    }
+    .popup .popup-area span:first-child img {
+        width: 5vw;
+        height: 5vw;
+    }
+    .popup .popup-area span:last-child {
+        width: 256px;
+        height: 372px;
+        overflow-x: hidden;
+        text-align: center;
+        font-size: 14px;
+        line-height: 140%;
+        margin-top: 8%;
+    }
+}
