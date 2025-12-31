@@ -1,0 +1,124 @@
+.about {
+    width: 100%;
+    padding: 100px 40px;
+    position: relative;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-content {
+    text-align: center;
+}
+
+.about-text {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Actay', sans-serif;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+.about-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+.stat-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.stat-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.stat-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.stat-number {
+    font-size: 56px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #7877c6 0%, #ff77c6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Actay', sans-serif;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Планшеты */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .about {
+        padding: 80px 30px;
+    }
+    
+    .about-text {
+        font-size: 16px;
+    }
+    
+    .about-stats {
+        gap: 40px;
+    }
+    
+    .stat-number {
+        font-size: 48px;
+    }
+}
+
+/* Мобильные устройства */
+@media (max-width: 767px) {
+    .about {
+        padding: 60px 20px;
+    }
+    
+    .about-text {
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+    
+    .about-stats {
+        gap: 30px;
+        flex-direction: column;
+    }
+    
+    .stat-number {
+        font-size: 42px;
+    }
+    
+    .stat-label {
+        font-size: 16px;
+    }
+}
+
+

@@ -1,27 +1,38 @@
 import './Header.css';
+import { useSection } from '../Content/Content';
 
 export default function Header() {
+    const context = useSection();
+    const setActiveSection = context ? context.setActiveSection : () => {};
+    
+    const scrollToSection = (sectionId) => {
+        setActiveSection(sectionId);
+        const element = document.getElementById(sectionId);
+        if (element) {
+            const headerOffset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    };
+
     return (
-        <div className='header'>
-            <div className='container-left'>
-                <div className='logo'><span>Epc</span><span>Hunters</span></div>
-                <div className='loren-ipsum'>
-                    <div>Loren Ipsum</div>
-                    <div>Loren Ipsum</div>
-                    <div>Loren Ipsum</div>
+        <header className='header'>
+            <div className='header-container'>
+                <div className='logo' onClick={() => scrollToSection('home')}>
+                    <span className='logo-text'>Cifron</span>
                 </div>
+                <nav className='nav'>
+                    <button onClick={() => scrollToSection('home')} className='nav-link'>Главная</button>
+                    <button onClick={() => scrollToSection('services')} className='nav-link'>Услуги</button>
+                    <button onClick={() => scrollToSection('about')} className='nav-link'>О нас</button>
+                    <button onClick={() => scrollToSection('contact')} className='nav-link nav-link-cta'>Связаться</button>
+                </nav>
             </div>
-            <div className='container-right'>
-                <div>
-                    <span>Loren Ipsum</span>
-                    <span>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.9912 0H12V6.0088H11.2489V1.28509L0.528117 12L0 11.4719L10.7149 0.7511H5.9912V0Z" fill="white"/>
-                        </svg>
-                    </span>
-                </div>
-                <div></div>
-            </div>
-        </div>
+        </header>
     );
 }

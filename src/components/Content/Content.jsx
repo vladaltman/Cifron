@@ -1,32 +1,38 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext, useContext } from 'react';
 import './Content.css';
 import Header from '../Header/Header';
-import Main from '../Main/Main';
-import Info from '../Info/Info';
+import Hero from '../Hero/Hero';
+import Services from '../Services/Services';
+import About from '../About/About';
+import Contact from '../Contact/Contact';
 import HeaderMobile from '../Header/HeaderMobile';
-import MainMobile from '../Main/MainMobile';
+
+const SectionContext = createContext();
+
+export const useSection = () => useContext(SectionContext);
 
 export default function Content() {
-    const [screenSize, setScreenSize] = useState(window.innerWidth <= 399 ? 'mobile' : 'desktop');
+    const [screenSize, setScreenSize] = useState(window.innerWidth <= 768 ? 'mobile' : 'desktop');
+    const [activeSection, setActiveSection] = useState('home');
 
     useEffect(() => {
         const handleResize = () => {
-            setScreenSize(window.innerWidth <= 399 ? 'mobile' : 'desktop');
+            setScreenSize(window.innerWidth <= 768 ? 'mobile' : 'desktop');
         };
 
         window.addEventListener('resize', handleResize);
-
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     return (
-        <div className='content'>
-            {screenSize === 'desktop' && <Header />}
-            {screenSize === 'mobile' && <HeaderMobile />}
-            <div className='h1'>Loren Ipsum</div>
-            {screenSize === 'desktop' && <Main />}
-            {screenSize === 'mobile' && <MainMobile />}
-            <Info />
-        </div>
+        <SectionContext.Provider value={{ activeSection, setActiveSection }}>
+            <div className='content'>
+                {screenSize === 'desktop' ? <Header /> : <HeaderMobile />}
+                <Hero />
+                <Services />
+                <About />
+                <Contact />
+            </div>
+        </SectionContext.Provider>
     );
 }

@@ -1,52 +1,51 @@
 import './HeaderMobile.css';
 import { useState } from 'react';
+import { useSection } from '../Content/Content';
 
 export default function HeaderMobile() {
-    const [visible, setVisible] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const context = useSection();
+    const setActiveSection = context ? context.setActiveSection : () => {};
 
-    const handleClick = () => {
-        setVisible(!visible);
+    const scrollToSection = (sectionId) => {
+        setActiveSection(sectionId);
+        setIsOpen(false);
+        const element = document.getElementById(sectionId);
+        if (element) {
+            const headerOffset = 70;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
     };
 
     return (
-        <div className='header-mobile'>
-            Epc<br />Hunters
-            <span onClick={handleClick}>
-                <svg width="62.5%" height="53%" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.5 1C0.5 0.778988 0.587798 0.567026 0.744078 0.410746C0.900358 0.254465 1.11232 0.166668 1.33333 0.166668H24.6667C24.8877 0.166668 25.0996 0.254465 25.2559 0.410746C25.4122 0.567026 25.5 0.778988 25.5 1C25.5 1.22101 25.4122 1.43298 25.2559 1.58926C25.0996 1.74554 24.8877 1.83333 24.6667 1.83333H1.33333C1.11232 1.83333 0.900358 1.74554 0.744078 1.58926C0.587798 1.43298 0.5 1.22101 0.5 1ZM0.5 11C0.5 10.779 0.587798 10.567 0.744078 10.4107C0.900358 10.2545 1.11232 10.1667 1.33333 10.1667H24.6667C24.8877 10.1667 25.0996 10.2545 25.2559 10.4107C25.4122 10.567 25.5 10.779 25.5 11C25.5 11.221 25.4122 11.433 25.2559 11.5893C25.0996 11.7455 24.8877 11.8333 24.6667 11.8333H1.33333C1.11232 11.8333 0.900358 11.7455 0.744078 11.5893C0.587798 11.433 0.5 11.221 0.5 11ZM1.33333 20.1667C1.11232 20.1667 0.900358 20.2545 0.744078 20.4107C0.587798 20.567 0.5 20.779 0.5 21C0.5 21.221 0.587798 21.433 0.744078 21.5893C0.900358 21.7455 1.11232 21.8333 1.33333 21.8333H24.6667C24.8877 21.8333 25.0996 21.7455 25.2559 21.5893C25.4122 21.433 25.5 21.221 25.5 21C25.5 20.779 25.4122 20.567 25.2559 20.4107C25.0996 20.2545 24.8877 20.1667 24.6667 20.1667H1.33333Z" fill="white"/>
-                </svg>
-            </span>
-            <div className={`menu ${visible ? 'visible' : ''}`}>
-                <div className='menu-header'>
-                    <span>Epc Hunters</span>
-                    <span>Loren Ipsum
-                        <span onClick={handleClick}>
-                            <svg width="16" height="16" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M27.7031 1.29688L1.29688 27.7031M1.29688 1.29688L27.7031 27.7031" stroke="black" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                    </span>
+        <header className='header-mobile'>
+            <div className='header-mobile-container'>
+                <div className='logo-mobile' onClick={() => scrollToSection('home')}>
+                    Portfolio
                 </div>
-                <div className='menu-nav'>
-                    <div className='section-1'>
-                        <span>Loren Ipsum</span>
-                        <span>Loren Ipsum</span>
-                        <span>Loren Ipsum</span>
-                    </div>
-                    <div className='section-2'>
-                        <div>
-                            <span>Loren Ipsum</span>
-                            <span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5.9912 0H12V6.0088H11.2489V1.28509L0.528117 12L0 11.4719L10.7149 0.7511H5.9912V0Z" fill="black"/>
-                                </svg>
-                            </span>
-                        </div>
-                        <div></div>
-                    </div>
-                </div>
+                <button 
+                    className={`menu-toggle ${isOpen ? 'active' : ''}`}
+                    onClick={() => setIsOpen(!isOpen)}
+                    aria-label="Toggle menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <div className={`bg-menu ${visible ? 'visible' : ''}`} onClick={handleClick}></div>
-        </div>
+            <nav className={`mobile-nav ${isOpen ? 'open' : ''}`}>
+                <button onClick={() => scrollToSection('home')} className='mobile-nav-link'>Главная</button>
+                <button onClick={() => scrollToSection('services')} className='mobile-nav-link'>Услуги</button>
+                <button onClick={() => scrollToSection('about')} className='mobile-nav-link'>О нас</button>
+                <button onClick={() => scrollToSection('contact')} className='mobile-nav-link mobile-nav-cta'>Связаться</button>
+            </nav>
+            {isOpen && <div className='mobile-nav-overlay' onClick={() => setIsOpen(false)}></div>}
+        </header>
     );
 }
